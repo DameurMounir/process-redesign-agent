@@ -1,0 +1,31 @@
+{
+  "assumptions": [
+    {
+      "assumption_id": "A-01",
+      "statement": "All event durations are synthetic working minutes and are additive because the AS-IS path is modeled sequentially.",
+      "status": "ACCEPTED_FOR_SYNTHETIC_BASELINE"
+    },
+    {
+      "assumption_id": "A-02",
+      "statement": "Hourly rates are synthetic comparison inputs and do not represent salary, invoice, or market data.",
+      "status": "ACCEPTED_FOR_SYNTHETIC_BASELINE"
+    },
+    {
+      "assumption_id": "A-03",
+      "statement": "Wait time does not incur direct labor cost in the baseline calculator.",
+      "status": "ACCEPTED_FOR_SYNTHETIC_BASELINE"
+    },
+    {
+      "assumption_id": "A-04",
+      "statement": "The 240 instances are sufficient to prove calculator reproducibility, not operational generalization.",
+      "status": "ACCEPTED_FOR_SYNTHETIC_BASELINE"
+    },
+    {
+      "assumption_id": "A-05",
+      "statement": "Future implementation effort and change risk require labeled human estimates and cannot be derived from event data alone.",
+      "status": "REQUIRES_HUMAN_ACCEPTANCE_PER_OPTION"
+    }
+  ],
+  "source_id": "SRC-ASSUMPTION-001",
+  "version": "1.0.0"
+}

@@ -1,0 +1,63 @@
+{
+  "currency": "USD",
+  "rate_basis": "synthetic fully loaded hourly operating cost used only for scenario comparison",
+  "roles": [
+    {
+      "current_responsibilities": [
+        "receive request",
+        "capture initial data",
+        "route data mismatches"
+      ],
+      "name": "Intake Specialist",
+      "role_id": "intake_specialist",
+      "synthetic_hourly_cost_usd": 32
+    },
+    {
+      "current_responsibilities": [
+        "re-key CRM data",
+        "validate documents",
+        "resolve many exceptions"
+      ],
+      "name": "Onboarding Analyst",
+      "role_id": "onboarding_analyst",
+      "synthetic_hourly_cost_usd": 38
+    },
+    {
+      "current_responsibilities": [
+        "perform sanctions screening",
+        "resolve sanctions false positives"
+      ],
+      "name": "Compliance Analyst",
+      "role_id": "compliance_analyst",
+      "synthetic_hourly_cost_usd": 52
+    },
+    {
+      "current_responsibilities": [
+        "review risk tier",
+        "approve high-risk cases"
+      ],
+      "name": "Risk Manager",
+      "role_id": "risk_manager",
+      "synthetic_hourly_cost_usd": 72
+    },
+    {
+      "current_responsibilities": [
+        "send activation notification",
+        "answer status questions"
+      ],
+      "name": "Support Specialist",
+      "role_id": "support_specialist",
+      "synthetic_hourly_cost_usd": 34
+    },
+    {
+      "current_responsibilities": [
+        "activate approved accounts"
+      ],
+      "name": "Onboarding System",
+      "role_id": "system",
+      "synthetic_hourly_cost_usd": 0
+    }
+  ],
+  "source_id": "SRC-ROLE-001",
+  "version": "1.0.0"
+}

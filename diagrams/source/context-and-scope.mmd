@@ -1,0 +1,9 @@
+flowchart LR
+    I["Fictional evidence\nprocess, roles, rules, 240 cases"] --> A["Process Redesign Agent\ninterpret patterns"]
+    A --> C["Deterministic controls\nvalidate graph and calculate KPIs"]
+    C --> O["Three TO-BE options\ntrade-off matrix and backlog"]
+    O --> H{"Human process owner"}
+    H -->|Select with rationale| S["Approved target design"]
+    H -->|Reject or revise| A
+
+    N["No forecasts\nNo live automation\nNo control waivers"] -. boundary .-> C

@@ -1,0 +1,88 @@
+{
+  "baseline": {
+    "business_days": 30,
+    "daily_volume": 8,
+    "instance_count": 240,
+    "sla_working_minutes": 960,
+    "time_basis": "sequential working minutes, not calendar elapsed time"
+  },
+  "comparison_dimensions": [
+    {
+      "deterministic": true,
+      "dimension_id": "D-01",
+      "direction": "LOWER_IS_BETTER",
+      "name": "cycle time"
+    },
+    {
+      "deterministic": true,
+      "dimension_id": "D-02",
+      "direction": "HIGHER_IS_BETTER",
+      "name": "SLA attainment"
+    },
+    {
+      "deterministic": true,
+      "dimension_id": "D-03",
+      "direction": "HIGHER_IS_BETTER",
+      "name": "first-pass yield"
+    },
+    {
+      "deterministic": true,
+      "dimension_id": "D-04",
+      "direction": "LOWER_IS_BETTER",
+      "name": "labor cost per case"
+    },
+    {
+      "deterministic": true,
+      "dimension_id": "D-05",
+      "direction": "MUST_PASS",
+      "name": "mandatory control preservation"
+    },
+    {
+      "deterministic": false,
+      "dimension_id": "D-06",
+      "direction": "LOWER_IS_BETTER",
+      "name": "implementation effort"
+    },
+    {
+      "deterministic": false,
+      "dimension_id": "D-07",
+      "direction": "LOWER_IS_BETTER",
+      "name": "change risk"
+    }
+  ],
+  "redesign_constraints": [
+    {
+      "constraint_id": "RC-01",
+      "statement": "Every applicable mandatory control must remain enforced and evidenced.",
+      "type": "HARD"
+    },
+    {
+      "constraint_id": "RC-02",
+      "statement": "High-risk activation must retain named human approval.",
+      "type": "HARD"
+    },
+    {
+      "constraint_id": "RC-03",
+      "statement": "A quantified benefit is blocked when its baseline input or transformation assumption is missing.",
+      "type": "HARD"
+    },
+    {
+      "constraint_id": "RC-04",
+      "statement": "The first pilot should be executable within 12 weeks and a synthetic implementation budget of USD 180,000.",
+      "type": "SOFT"
+    },
+    {
+      "constraint_id": "RC-05",
+      "statement": "No scenario may claim layoffs, realized savings, or production forecast accuracy.",
+      "type": "HARD"
+    }
+  ],
+  "source_id": "SRC-CONSTRAINT-001",
+  "target_direction": {
+    "activation_audit_evidence_rate": 1.0,
+    "first_pass_yield_minimum": 0.85,
+    "p90_cycle_minutes_maximum": 960,
+    "sla_attainment_rate_minimum": 0.9
+  },
+  "version": "1.0.0"
+}

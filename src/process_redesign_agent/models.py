@@ -1,4 +1,3 @@
-
 from __future__ import annotations
 
 from dataclasses import dataclass
@@ -36,6 +35,7 @@ class ProcessEvent:
 
 @dataclass(frozen=True, slots=True)
 class ProcessInstance:
+    case_version: str
     instance_id: str
     received_day: int
     risk_tier: str
@@ -46,6 +46,7 @@ class ProcessInstance:
     @classmethod
     def from_dict(cls, value: dict[str, Any]) -> "ProcessInstance":
         instance = cls(
+            case_version=str(value["case_version"]),
             instance_id=str(value["instance_id"]),
             received_day=int(value["received_day"]),
             risk_tier=str(value["risk_tier"]),
@@ -53,6 +54,8 @@ class ProcessInstance:
             control_results={str(k): str(v) for k, v in value["control_results"].items()},
             events=tuple(ProcessEvent.from_dict(item) for item in value["events"]),
         )
+        if not instance.case_version:
+            raise ValueError("case_version is required")
         if not instance.instance_id:
             raise ValueError("instance_id is required")
         if instance.received_day < 1:

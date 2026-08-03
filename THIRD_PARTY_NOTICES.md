@@ -1,4 +1,3 @@
-
 # Third-party notices
 
 Milestone 01 contains no copied templates, external datasets, icons, stock

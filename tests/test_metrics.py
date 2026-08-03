@@ -1,4 +1,3 @@
-
 from __future__ import annotations
 
 import unittest
@@ -32,6 +31,14 @@ class MetricTests(unittest.TestCase):
         self.assertLess(metrics["time"]["sla_attainment_rate"], 0.70)
         self.assertGreater(metrics["quality_and_flow"]["exception_rate"], 0.25)
         self.assertLess(metrics["controls"]["activation_audit_evidence_rate"], 1.0)
+
+    def test_exact_frozen_baseline_values(self) -> None:
+        metrics = load_json(REPO_ROOT / "case/expected/baseline-kpis.json")["metrics"]
+        self.assertEqual(metrics["time"]["average_cycle_minutes"], 1141.6375)
+        self.assertEqual(metrics["time"]["p90_cycle_minutes"], 1885)
+        self.assertEqual(metrics["time"]["sla_attainment_rate"], 0.5375)
+        self.assertEqual(metrics["cost_and_capacity"]["average_labor_cost_usd"], 86.1074)
+        self.assertEqual(metrics["controls"]["activation_audit_evidence_rate"], 0.925)
 
 
 if __name__ == "__main__":

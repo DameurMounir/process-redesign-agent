@@ -1,4 +1,3 @@
-
 # Synthetic data and documentation licence
 
 Unless a file says otherwise, the original fictional case data, diagrams, and

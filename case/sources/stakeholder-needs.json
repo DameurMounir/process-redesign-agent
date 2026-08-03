@@ -1,0 +1,48 @@
+{
+  "source_id": "SRC-NEED-001",
+  "stakeholders": [
+    {
+      "evidence_type": "FICTIONAL_INTERVIEW_SUMMARY",
+      "need": "A predictable onboarding promise and fewer cases waiting without an owner.",
+      "priority": "HIGH",
+      "role": "Sales Operations",
+      "stakeholder_id": "STK-SALES"
+    },
+    {
+      "evidence_type": "FICTIONAL_INTERVIEW_SUMMARY",
+      "need": "No design may bypass sanctions screening, high-risk approval, or exception review.",
+      "priority": "MANDATORY",
+      "role": "Compliance",
+      "stakeholder_id": "STK-COMPLIANCE"
+    },
+    {
+      "evidence_type": "FICTIONAL_INTERVIEW_SUMMARY",
+      "need": "Remove duplicate entry, reduce handoffs, and make workload visible by role.",
+      "priority": "HIGH",
+      "role": "Onboarding Operations",
+      "stakeholder_id": "STK-OPERATIONS"
+    },
+    {
+      "evidence_type": "FICTIONAL_INTERVIEW_SUMMARY",
+      "need": "Expose case status and exception ownership before the customer asks for an update.",
+      "priority": "MEDIUM",
+      "role": "Customer Support",
+      "stakeholder_id": "STK-SUPPORT"
+    },
+    {
+      "evidence_type": "FICTIONAL_CUSTOMER_NEED",
+      "need": "Submit information once, understand what is missing, and receive timely activation.",
+      "priority": "HIGH",
+      "role": "Customer",
+      "stakeholder_id": "STK-CUSTOMER"
+    },
+    {
+      "evidence_type": "FICTIONAL_DECISION_AUTHORITY",
+      "need": "Compare realistic options and retain authority to accept assumptions and select the target design.",
+      "priority": "MANDATORY",
+      "role": "Head of Onboarding",
+      "stakeholder_id": "STK-PROCESS-OWNER"
+    }
+  ],
+  "version": "1.0.0"
+}

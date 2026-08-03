@@ -1,4 +1,3 @@
-
 # Changelog
 
 All notable changes are recorded here. The project follows bounded milestone

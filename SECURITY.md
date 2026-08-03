@@ -1,4 +1,3 @@
-
 # Security policy
 
 ## Supported scope

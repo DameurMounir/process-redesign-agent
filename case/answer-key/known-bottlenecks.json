@@ -1,0 +1,110 @@
+{
+  "answer_key_policy": "Evaluation-only labels. Runtime adapters must not receive this file.",
+  "bottlenecks": [
+    {
+      "bottleneck_id": "B-001",
+      "evidence_refs": [
+        {
+          "locator": "Current-state problem paragraph 1",
+          "path": "case/sources/process-brief.md"
+        },
+        {
+          "locator": "/steps/1/current_issue_tags",
+          "path": "case/sources/as-is-process.json"
+        }
+      ],
+      "name": "Duplicate customer-data entry",
+      "root_cause": "The first intake capture is not reused by the CRM workflow.",
+      "severity": "HIGH",
+      "step_id": "crm_rekey"
+    },
+    {
+      "bottleneck_id": "B-002",
+      "evidence_refs": [
+        {
+          "locator": "Current-state problem paragraphs 1-2",
+          "path": "case/sources/process-brief.md"
+        },
+        {
+          "locator": "document_validation event wait and REWORKED outcomes",
+          "path": "case/operations/process-instances.jsonl"
+        }
+      ],
+      "name": "Document-validation queue and rework",
+      "root_cause": "Incomplete submissions are discovered after intake and return to a shared queue.",
+      "severity": "HIGH",
+      "step_id": "document_validation"
+    },
+    {
+      "bottleneck_id": "B-003",
+      "evidence_refs": [
+        {
+          "locator": "Current-state problem paragraph 1",
+          "path": "case/sources/process-brief.md"
+        },
+        {
+          "locator": "/edges",
+          "path": "case/sources/as-is-process.json"
+        }
+      ],
+      "name": "Serial independent checks",
+      "root_cause": "Document, compliance, and risk checks wait for the preceding step even when inputs are already available.",
+      "severity": "MEDIUM",
+      "step_id": "compliance_screening"
+    },
+    {
+      "bottleneck_id": "B-004",
+      "evidence_refs": [
+        {
+          "locator": "Current-state problem paragraph 2",
+          "path": "case/sources/process-brief.md"
+        },
+        {
+          "locator": "exception_resolution role_id and wait_minutes",
+          "path": "case/operations/process-instances.jsonl"
+        }
+      ],
+      "name": "Long and inconsistently owned exception queue",
+      "root_cause": "Exception ownership depends on who notices the issue rather than a stable case-owner rule.",
+      "severity": "CRITICAL",
+      "step_id": "exception_resolution"
+    },
+    {
+      "bottleneck_id": "B-005",
+      "evidence_refs": [
+        {
+          "locator": "Current-state problem paragraph 3",
+          "path": "case/sources/process-brief.md"
+        },
+        {
+          "locator": "control_results/C-05",
+          "path": "case/operations/process-instances.jsonl"
+        }
+      ],
+      "name": "Incomplete activation audit evidence",
+      "root_cause": "Manual handoffs do not always bind control evidence to the activation record.",
+      "severity": "CRITICAL",
+      "step_id": "account_activation"
+    },
+    {
+      "bottleneck_id": "B-006",
+      "evidence_refs": [
+        {
+          "locator": "Current-state problem paragraph 1",
+          "path": "case/sources/process-brief.md"
+        },
+        {
+          "locator": "/stakeholders/0 and /stakeholders/2",
+          "path": "case/sources/stakeholder-needs.json"
+        }
+      ],
+      "name": "No end-to-end case ownership",
+      "root_cause": "Responsibility moves across queues without one visible accountable owner.",
+      "severity": "HIGH",
+      "step_id": "intake_receive"
+    }
+  ],
+  "case_version": "atlasbridge-onboarding-as-is-v1.0.0",
+  "status": "LOCKED",
+  "version": "1.0.0"
+}

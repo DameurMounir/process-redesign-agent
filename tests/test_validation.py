@@ -1,7 +1,8 @@
-
 from __future__ import annotations
 
 import copy
+import shutil
+import tempfile
 import unittest
 from pathlib import Path
 
@@ -31,6 +32,25 @@ class ValidationTests(unittest.TestCase):
         record["events"][0]["wait_minutes"] = -1
         with self.assertRaisesRegex(ValueError, "cannot be negative"):
             ProcessInstance.from_dict(record)
+
+    @unittest.skipUnless(CASE_PRESENT, "Milestone 01 case not present")
+    def test_case_file_tampering_is_rejected(self) -> None:
+        with tempfile.TemporaryDirectory() as directory:
+            copy_root = Path(directory) / "repo"
+            shutil.copytree(REPO_ROOT, copy_root, ignore=shutil.ignore_patterns(".git", "__pycache__"))
+            target = copy_root / "case/sources/process-brief.md"
+            target.write_text(target.read_text(encoding="utf-8") + "tampered\n", encoding="utf-8")
+            with self.assertRaisesRegex(ValueError, r"manifest (?:byte count|digest) mismatch"):
+                verify_repository_case(copy_root)
+
+    @unittest.skipUnless(CASE_PRESENT, "Milestone 01 case not present")
+    def test_manifest_covers_all_case_files(self) -> None:
+        with tempfile.TemporaryDirectory() as directory:
+            copy_root = Path(directory) / "repo"
+            shutil.copytree(REPO_ROOT, copy_root, ignore=shutil.ignore_patterns(".git", "__pycache__"))
+            (copy_root / "case/unmanifested.txt").write_text("unexpected\n", encoding="utf-8")
+            with self.assertRaisesRegex(ValueError, "manifest must cover"):
+                verify_repository_case(copy_root)
 
 
 if __name__ == "__main__":

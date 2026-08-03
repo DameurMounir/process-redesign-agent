@@ -1,0 +1,54 @@
+{
+  "mandatory_controls": [
+    {
+      "applies_when": "ALL_CASES",
+      "control_id": "C-01",
+      "name": "Identity verification before activation",
+      "rule": "An account cannot be activated until identity and company-document validation is complete."
+    },
+    {
+      "applies_when": "ALL_CASES",
+      "control_id": "C-02",
+      "name": "Sanctions screening before activation",
+      "rule": "A sanctions-screening result must exist before account activation."
+    },
+    {
+      "applies_when": "RISK_TIER_HIGH",
+      "control_id": "C-03",
+      "name": "High-risk manual approval",
+      "rule": "A Risk Manager must approve every high-risk case before activation."
+    },
+    {
+      "applies_when": "ANY_EXCEPTION",
+      "control_id": "C-04",
+      "name": "Controlled exception route",
+      "rule": "A case with an unresolved exception cannot use the normal activation route."
+    },
+    {
+      "applies_when": "ALL_CASES",
+      "control_id": "C-05",
+      "name": "Activation audit evidence",
+      "rule": "The activation record must retain evidence of all applicable checks and approvals."
+    }
+  ],
+  "optimization_principles": [
+    {
+      "principle_id": "P-01",
+      "statement": "Information collected from the customer should be captured once and reused."
+    },
+    {
+      "principle_id": "P-02",
+      "statement": "Independent checks may run in parallel when mandatory sequencing is preserved."
+    },
+    {
+      "principle_id": "P-03",
+      "statement": "Every case and exception requires one visible accountable owner."
+    },
+    {
+      "principle_id": "P-04",
+      "statement": "Automation may prepare or route work but cannot waive a mandatory control."
+    }
+  ],
+  "source_id": "SRC-RULE-001",
+  "version": "1.0.0"
+}

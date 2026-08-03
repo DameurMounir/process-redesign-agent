@@ -1,0 +1,72 @@
+{
+  "case_id": "AB-ONBOARDING-REDESIGN-001",
+  "case_version": "atlasbridge-onboarding-as-is-v1.0.0",
+  "data_classification": "SYNTHETIC_PUBLIC",
+  "file_count": 11,
+  "files": [
+    {
+      "bytes": 1211,
+      "path": "case/README.md",
+      "sha256": "63147b82cb30f1c4876dad14845a9b925b414765086dccab61340e47ec2c5c1e"
+    },
+    {
+      "bytes": 3589,
+      "path": "case/answer-key/known-bottlenecks.json",
+      "sha256": "d0edd00af37e6db3ebde509f2dfdeed0385e432c3ba9af9a22830a0fd07f7a7a"
+    },
+    {
+      "bytes": 2662,
+      "path": "case/expected/baseline-kpis.json",
+      "sha256": "5f8410810cb23a98de3f2a89ab3e45182cc8176fcc02a463030a3d9cf5066989"
+    },
+    {
+      "bytes": 293053,
+      "path": "case/operations/process-instances.jsonl",
+      "sha256": "04d83d032482fe83561e518928391453cd71325d43bac0e1f24ce4dde83f3161"
+    },
+    {
+      "bytes": 3217,
+      "path": "case/sources/as-is-process.json",
+      "sha256": "ab88d6b9e9f61600f441337c3630aa176105288fc1259a2dd0c00cddf6599a3f"
+    },
+    {
+      "bytes": 1179,
+      "path": "case/sources/assumptions.json",
+      "sha256": "f7721ae8b3afcfc6dcf5c83ed16a17db8d272179bfccd3805f292c496d7e0e8c"
+    },
+    {
+      "bytes": 1768,
+      "path": "case/sources/business-rules.json",
+      "sha256": "3d28b63571cce5ad42ed2122c18120118ab1edf86ae49d4115efc6cc445ec304"
+    },
+    {
+      "bytes": 2376,
+      "path": "case/sources/constraints-and-targets.json",
+      "sha256": "ede9fd7d8a075d804ee815427adab5f997f080e4ef562a40337afcc6492de77a"
+    },
+    {
+      "bytes": 1940,
+      "path": "case/sources/process-brief.md",
+      "sha256": "647e42c03cfb7ee777ee23cbe78c8732fdacaef95d47f4362f4f6e9f85854b4a"
+    },
+    {
+      "bytes": 1628,
+      "path": "case/sources/roles-and-rates.json",
+      "sha256": "73647a5a2d68664b8174fd16dfd9831059ffdf09366b7eee57f6d75d9d58df34"
+    },
+    {
+      "bytes": 1685,
+      "path": "case/sources/stakeholder-needs.json",
+      "sha256": "0eb649ff1737d5fdefbcdc4f4544e6a4a58d4dabce0671f018e1dff39b579722"
+    }
+  ],
+  "frozen_at_utc": "2026-08-03T09:00:00Z",
+  "generator": {
+    "instance_count": 240,
+    "name": "process_redesign_agent.generator",
+    "seed": 20260803,
+    "version": "1.0.0"
+  },
+  "licence": "CC-BY-4.0",
+  "status": "FROZEN"
+}
