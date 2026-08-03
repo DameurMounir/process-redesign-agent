@@ -1,0 +1,43 @@
+
+[project]
+name = "process-redesign-agent"
+version = "0.1.0"
+description = "Evidence-grounded AS-IS and TO-BE process comparison with deterministic KPI controls and human selection"
+readme = "README.md"
+requires-python = ">=3.12,<3.14"
+license = {file = "LICENSE"}
+authors = [{name = "Mounir Dameur"}]
+keywords = [
+  "ai-agents",
+  "business-analysis",
+  "business-process-management",
+  "human-in-the-loop",
+  "process-redesign",
+]
+classifiers = [
+  "Development Status :: 3 - Alpha",
+  "License :: OSI Approved :: Apache Software License",
+  "Programming Language :: Python :: 3.12",
+  "Programming Language :: Python :: 3.13",
+  "Typing :: Typed",
+]
+dependencies = []
+
+[project.scripts]
+process-redesign-agent = "process_redesign_agent.cli:main"
+
+[tool.uv]
+package = false
+
+[tool.pytest.ini_options]
+addopts = "-ra --strict-config --strict-markers"
+testpaths = ["tests"]
+
+[tool.coverage.run]
+branch = true
+source = ["process_redesign_agent"]
+
+[tool.coverage.report]
+fail_under = 90
+show_missing = true
+skip_covered = true
