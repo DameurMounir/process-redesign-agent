@@ -60,7 +60,7 @@ def calculate_baseline_metrics(
         handoffs.append(
             sum(
                 current.role_id != previous.role_id
-                for previous, current in zip(instance.events, instance.events[1:], strict=True)
+                for previous, current in zip(instance.events, instance.events[1:])
             )
         )
         for event in instance.events:

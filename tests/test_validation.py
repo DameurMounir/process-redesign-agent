@@ -13,8 +13,8 @@ REPO_ROOT = Path(__file__).resolve().parents[1]
 CASE_PRESENT = (REPO_ROOT / "case/manifest.json").is_file()
 
 
-@unittest.skipUnless(CASE_PRESENT, "Milestone 01 case not present")
 class ValidationTests(unittest.TestCase):
+    @unittest.skipUnless(CASE_PRESENT, "Milestone 01 case not present")
     def test_repository_case_contract_passes(self) -> None:
         summary = verify_repository_case(REPO_ROOT)
         self.assertEqual(summary["instance_count"], 240)

@@ -11,7 +11,6 @@ REPO_ROOT = Path(__file__).resolve().parents[1]
 CASE_PRESENT = (REPO_ROOT / "case/manifest.json").is_file()
 
 
-@unittest.skipUnless(CASE_PRESENT, "Milestone 01 case not present")
 class GeneratorTests(unittest.TestCase):
     def test_generation_is_deterministic(self) -> None:
         self.assertEqual(build_instance_records(), build_instance_records())
@@ -24,9 +23,11 @@ class GeneratorTests(unittest.TestCase):
         self.assertEqual(records[0]["received_day"], 1)
         self.assertEqual(records[-1]["received_day"], 30)
 
+    @unittest.skipUnless(CASE_PRESENT, "Milestone 01 case not present")
     def test_committed_generated_artifacts_do_not_drift(self) -> None:
         self.assertEqual(check_generated_case(REPO_ROOT), [])
 
+    @unittest.skipUnless(CASE_PRESENT, "Milestone 01 case not present")
     def test_jsonl_is_canonical_and_complete(self) -> None:
         lines = (REPO_ROOT / "case/operations/process-instances.jsonl").read_text(encoding="utf-8").splitlines()
         self.assertEqual(len(lines), INSTANCE_COUNT)
