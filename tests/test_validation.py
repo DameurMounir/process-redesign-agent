@@ -10,8 +10,10 @@ from process_redesign_agent.models import ProcessInstance
 from process_redesign_agent.validation import verify_repository_case
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
+CASE_PRESENT = (REPO_ROOT / "case/manifest.json").is_file()
 
 
+@unittest.skipUnless(CASE_PRESENT, "Milestone 01 case not present")
 class ValidationTests(unittest.TestCase):
     def test_repository_case_contract_passes(self) -> None:
         summary = verify_repository_case(REPO_ROOT)

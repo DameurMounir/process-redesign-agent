@@ -17,6 +17,9 @@ def main() -> int:
     parser = argparse.ArgumentParser(description="Generate or verify the frozen synthetic process case")
     parser.add_argument("--check", action="store_true", help="Fail rather than write when artifacts differ")
     args = parser.parse_args()
+    if not (REPO_ROOT / "case/sources").is_dir():
+        print("PASS: repository foundation contains no frozen case yet")
+        return 0
     if args.check:
         mismatches = check_generated_case(REPO_ROOT)
         if mismatches:

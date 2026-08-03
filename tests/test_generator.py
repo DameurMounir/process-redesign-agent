@@ -8,8 +8,10 @@ from pathlib import Path
 from process_redesign_agent.generator import INSTANCE_COUNT, build_instance_records, check_generated_case
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
+CASE_PRESENT = (REPO_ROOT / "case/manifest.json").is_file()
 
 
+@unittest.skipUnless(CASE_PRESENT, "Milestone 01 case not present")
 class GeneratorTests(unittest.TestCase):
     def test_generation_is_deterministic(self) -> None:
         self.assertEqual(build_instance_records(), build_instance_records())

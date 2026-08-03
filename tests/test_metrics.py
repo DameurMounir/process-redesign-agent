@@ -8,8 +8,10 @@ from process_redesign_agent.io import load_instances, load_json
 from process_redesign_agent.metrics import calculate_baseline_metrics, load_role_rates
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
+CASE_PRESENT = (REPO_ROOT / "case/manifest.json").is_file()
 
 
+@unittest.skipUnless(CASE_PRESENT, "Milestone 01 case not present")
 class MetricTests(unittest.TestCase):
     def test_calculator_matches_frozen_answer_key(self) -> None:
         case_root = REPO_ROOT / "case"

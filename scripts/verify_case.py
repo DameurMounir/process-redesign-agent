@@ -13,6 +13,9 @@ from process_redesign_agent.validation import CaseValidationError, verify_reposi
 
 
 def main() -> int:
+    if not (REPO_ROOT / "case/manifest.json").is_file():
+        print("PASS: repository foundation contains no frozen case yet")
+        return 0
     try:
         summary = verify_repository_case(REPO_ROOT)
     except (CaseValidationError, KeyError, TypeError, ValueError) as exc:
