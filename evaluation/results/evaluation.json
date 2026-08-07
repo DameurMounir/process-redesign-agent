@@ -1,0 +1,25 @@
+{
+  "all_checks_pass": true,
+  "checks": {
+    "all_mandatory_controls_preserved": true,
+    "authority_language_is_advisory": true,
+    "automation_first_exposes_soft_constraint": true,
+    "balanced_option_fits_soft_pilot_envelope": true,
+    "balanced_option_meets_targets": true,
+    "default_candidate_is_balanced": true,
+    "runtime_does_not_reference_answer_key": true,
+    "three_distinct_options": true
+  },
+  "claim_boundary": "Evaluation proves behavior on one frozen synthetic case. It does not establish production forecast accuracy or realized savings.",
+  "default_ranking": [
+    "OPT-B",
+    "OPT-A",
+    "OPT-C"
+  ],
+  "evaluation_version": "5.0.0",
+  "sensitivity_profiles": {
+    "balanced": "OPT-B",
+    "cost_and_change": "OPT-A",
+    "speed": "OPT-B"
+  }
+}
