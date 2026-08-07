@@ -28,3 +28,7 @@ runs/
 .DS_Store
 .vscode/
 .idea/
+
+# Local process-redesign decision state and exports
+.process-redesign/
+outputs/
