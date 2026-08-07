@@ -1,0 +1,5 @@
+flowchart LR
+  A[OPT-A\nLow change\nPartial target] --> H{Human review}
+  B[OPT-B\nBalanced\nPilot envelope PASS] --> H
+  C[OPT-C\nFastest model\nPilot envelope EXCEEDS] --> H
+  H --> D[Digest-bound decision]

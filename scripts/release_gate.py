@@ -1,18 +1,19 @@
 from __future__ import annotations
 
+import os
 import subprocess
 import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 PYTHON = sys.executable
-
 COMMANDS = [
     [PYTHON, "scripts/verify_case.py"],
     [PYTHON, "scripts/generate_case.py", "--check"],
     [PYTHON, "scripts/generate_analysis.py", "--check"],
     [PYTHON, "scripts/generate_comparison.py", "--check"],
     [PYTHON, "scripts/evaluate.py", "--check"],
+    [PYTHON, "scripts/generate_public_artifacts.py", "--check"],
     [PYTHON, "-m", "compileall", "-q", "src", "scripts", "tests"],
     [PYTHON, "-m", "unittest", "discover", "-s", "tests", "-v"],
     [PYTHON, "scripts/scan_public_boundary.py"],
@@ -20,7 +21,7 @@ COMMANDS = [
 
 
 def main() -> int:
-    env = dict(__import__("os").environ)
+    env = dict(os.environ)
     env["PYTHONPATH"] = str(ROOT / "src")
     for command in COMMANDS:
         print("+", " ".join(command), flush=True)
