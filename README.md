@@ -1,4 +1,3 @@
-
 # Process Redesign Agent
 
 **Compare credible future processes without turning estimates into promises or
@@ -22,6 +21,24 @@ manifest.
 
 No future option is selected in this milestone. No live process automation,
 external write, deployment, private company data, or forecast claim is included.
+
+## Frozen AS-IS result
+
+![Context and authority boundary](diagrams/rendered/context-and-scope.svg)
+
+| Baseline observation | Result |
+|---|---:|
+| Synthetic process instances | 240 |
+| Average / P90 cycle time | 1141.6375 / 1885 working minutes |
+| Wait share of cycle | 89.08% |
+| SLA attainment | 53.75% |
+| First-pass yield | 61.67% |
+| Activation audit evidence | 92.50% |
+
+The measurements expose why redesign is necessary, but they do not choose a
+future process. The preferred trade-off will be decided only after at least two
+valid TO-BE options preserve every mandatory control and a human accepts the
+assumptions.
 
 ## Planned six-branch evidence path
 

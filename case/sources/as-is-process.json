@@ -1,0 +1,131 @@
+{
+  "edges": [
+    {
+      "condition": "ALWAYS",
+      "from": "intake_receive",
+      "to": "crm_rekey"
+    },
+    {
+      "condition": "ALWAYS",
+      "from": "crm_rekey",
+      "to": "document_validation"
+    },
+    {
+      "condition": "ALWAYS",
+      "from": "document_validation",
+      "to": "compliance_screening"
+    },
+    {
+      "condition": "ALWAYS",
+      "from": "compliance_screening",
+      "to": "risk_review"
+    },
+    {
+      "condition": "ANY_EXCEPTION",
+      "from": "risk_review",
+      "to": "exception_resolution"
+    },
+    {
+      "condition": "NO_EXCEPTION",
+      "from": "risk_review",
+      "to": "account_activation"
+    },
+    {
+      "condition": "EXCEPTION_RESOLVED",
+      "from": "exception_resolution",
+      "to": "account_activation"
+    },
+    {
+      "condition": "ALWAYS",
+      "from": "account_activation",
+      "to": "customer_notification"
+    }
+  ],
+  "process_id": "AB-ONBOARDING-AS-IS",
+  "process_name": "AtlasBridge customer onboarding AS-IS",
+  "scope_end": "customer activation notification sent",
+  "scope_start": "onboarding request received",
+  "source_id": "SRC-PROCESS-001",
+  "steps": [
+    {
+      "current_issue_tags": [
+        "NO_END_TO_END_OWNER"
+      ],
+      "default_owner_role_id": "intake_specialist",
+      "kind": "HUMAN",
+      "name": "Receive onboarding request",
+      "step_id": "intake_receive"
+    },
+    {
+      "current_issue_tags": [
+        "DUPLICATE_DATA_ENTRY",
+        "HANDOFF"
+      ],
+      "default_owner_role_id": "onboarding_analyst",
+      "kind": "HUMAN",
+      "name": "Re-key customer data into CRM",
+      "step_id": "crm_rekey"
+    },
+    {
+      "current_issue_tags": [
+        "QUEUE",
+        "REWORK"
+      ],
+      "default_owner_role_id": "onboarding_analyst",
+      "kind": "HUMAN",
+      "name": "Validate identity and company documents",
+      "step_id": "document_validation"
+    },
+    {
+      "current_issue_tags": [
+        "SERIAL_CHECK",
+        "QUEUE"
+      ],
+      "default_owner_role_id": "compliance_analyst",
+      "kind": "HUMAN",
+      "name": "Perform sanctions screening",
+      "step_id": "compliance_screening"
+    },
+    {
+      "current_issue_tags": [
+        "SERIAL_CHECK",
+        "HIGH_RISK_QUEUE"
+      ],
+      "default_owner_role_id": "risk_manager",
+      "kind": "HUMAN",
+      "name": "Review risk tier and approvals",
+      "step_id": "risk_review"
+    },
+    {
+      "current_issue_tags": [
+        "UNCLEAR_OWNERSHIP",
+        "LONG_QUEUE",
+        "INCONSISTENT_ROUTE"
+      ],
+      "default_owner_role_id": "VARIABLE",
+      "kind": "HUMAN",
+      "name": "Resolve onboarding exception",
+      "optional": true,
+      "step_id": "exception_resolution"
+    },
+    {
+      "current_issue_tags": [
+        "INCOMPLETE_AUDIT_EVIDENCE"
+      ],
+      "default_owner_role_id": "system",
+      "kind": "SYSTEM",
+      "name": "Activate approved account",
+      "step_id": "account_activation"
+    },
+    {
+      "current_issue_tags": [
+        "MANUAL_NOTIFICATION"
+      ],
+      "default_owner_role_id": "support_specialist",
+      "kind": "HUMAN",
+      "name": "Notify customer of activation",
+      "step_id": "customer_notification"
+    }
+  ],
+  "version": "1.0.0"
+}

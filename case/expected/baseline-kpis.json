@@ -1,0 +1,85 @@
+{
+  "calculator_contract": {
+    "cost_basis": "service minutes multiplied by synthetic role rate; wait time has no labor cost",
+    "cycle_time": "sum of sequential service and wait minutes",
+    "percentile_method": "nearest-rank",
+    "rounding": "four decimal places, half up"
+  },
+  "case_version": "atlasbridge-onboarding-as-is-v1.0.0",
+  "generator_version": "1.0.0",
+  "metrics": {
+    "controls": {
+      "activation_audit_evidence_rate": 0.925,
+      "applicable_control_completion_rate": 0.9784,
+      "exception_path_control_rate": 1.0,
+      "high_risk_manual_approval_rate": 1.0
+    },
+    "cost_and_capacity": {
+      "average_labor_cost_usd": 86.1074,
+      "role_workload_hours": {
+        "compliance_analyst": 65.9,
+        "intake_specialist": 74.4,
+        "onboarding_analyst": 231.6667,
+        "risk_manager": 72.8167,
+        "support_specialist": 23.8833,
+        "system": 30.1667
+      }
+    },
+    "dataset": {
+      "average_daily_volume": 8.0,
+      "business_days": 30,
+      "instance_count": 240
+    },
+    "diagnostics": {
+      "average_touch_minutes_by_step": {
+        "account_activation": 7.5417,
+        "compliance_screening": 14.0833,
+        "crm_rekey": 14.1917,
+        "customer_notification": 5.9708,
+        "document_validation": 32.1583,
+        "exception_resolution": 16.1208,
+        "intake_receive": 16.4375,
+        "risk_review": 18.2042
+      },
+      "average_wait_minutes_by_step": {
+        "account_activation": 104.7208,
+        "compliance_screening": 155.9542,
+        "crm_rekey": 34.425,
+        "customer_notification": 35.9667,
+        "document_validation": 218.3875,
+        "exception_resolution": 288.2583,
+        "intake_receive": 51.3458,
+        "risk_review": 127.8708
+      },
+      "bottleneck_order_by_average_wait": [
+        "exception_resolution",
+        "document_validation",
+        "compliance_screening",
+        "risk_review",
+        "account_activation",
+        "intake_receive",
+        "customer_notification",
+        "crm_rekey"
+      ]
+    },
+    "quality_and_flow": {
+      "average_handoffs": 5.3833,
+      "duplicate_rekey_touch_minutes_per_case": 14.1917,
+      "exception_rate": 0.3833,
+      "first_pass_yield": 0.6167
+    },
+    "time": {
+      "average_cycle_minutes": 1141.6375,
+      "average_touch_minutes": 124.7083,
+      "average_wait_minutes": 1016.9292,
+      "maximum_cycle_minutes": 2464,
+      "median_cycle_minutes": 892.0,
+      "minimum_cycle_minutes": 508,
+      "p90_cycle_minutes": 1885,
+      "sla_attainment_rate": 0.5375,
+      "sla_minutes": 960,
+      "wait_share_of_cycle": 0.8908
+    }
+  },
+  "status": "FROZEN_EXPECTED_RESULT"
+}

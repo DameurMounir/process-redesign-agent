@@ -1,4 +1,3 @@
-
 from __future__ import annotations
 
 import json
@@ -26,6 +25,17 @@ class GeneratorTests(unittest.TestCase):
     @unittest.skipUnless(CASE_PRESENT, "Milestone 01 case not present")
     def test_committed_generated_artifacts_do_not_drift(self) -> None:
         self.assertEqual(check_generated_case(REPO_ROOT), [])
+
+    def test_volume_is_evenly_distributed_across_thirty_days(self) -> None:
+        records = build_instance_records()
+        counts = {day: 0 for day in range(1, 31)}
+        for record in records:
+            counts[record["received_day"]] += 1
+        self.assertEqual(set(counts.values()), {8})
+
+    def test_case_contains_no_preselected_future_option(self) -> None:
+        records = build_instance_records()
+        self.assertTrue(all("recommended_option" not in record for record in records))
 
     @unittest.skipUnless(CASE_PRESENT, "Milestone 01 case not present")
     def test_jsonl_is_canonical_and_complete(self) -> None:

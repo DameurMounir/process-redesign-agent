@@ -1,4 +1,3 @@
-
 ## Purpose and bounded scope
 
 ## Files and artifacts changed

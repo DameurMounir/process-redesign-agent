@@ -1,4 +1,3 @@
-
 # Milestone and branch contract
 
 | Milestone | Branch | Exit decision |

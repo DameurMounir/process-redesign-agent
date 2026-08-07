@@ -1,4 +1,3 @@
-
 # Contributing
 
 This project preserves a six-milestone evidence history. Contributions should
