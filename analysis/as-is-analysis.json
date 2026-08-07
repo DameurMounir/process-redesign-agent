@@ -1,0 +1,569 @@
+{
+  "analysis_version": "2.0.0",
+  "baseline_summary": {
+    "controls": {
+      "activation_audit_evidence_rate": 0.925,
+      "applicable_control_completion_rate": 0.9784,
+      "exception_path_control_rate": 1.0,
+      "high_risk_manual_approval_rate": 1.0
+    },
+    "cost_and_capacity": {
+      "average_labor_cost_usd": 86.1074,
+      "role_workload_hours": {
+        "compliance_analyst": 65.9,
+        "intake_specialist": 74.4,
+        "onboarding_analyst": 231.6667,
+        "risk_manager": 72.8167,
+        "support_specialist": 23.8833,
+        "system": 30.1667
+      }
+    },
+    "dataset": {
+      "average_daily_volume": 8.0,
+      "business_days": 30,
+      "instance_count": 240
+    },
+    "diagnostics": {
+      "average_touch_minutes_by_step": {
+        "account_activation": 7.5417,
+        "compliance_screening": 14.0833,
+        "crm_rekey": 14.1917,
+        "customer_notification": 5.9708,
+        "document_validation": 32.1583,
+        "exception_resolution": 16.1208,
+        "intake_receive": 16.4375,
+        "risk_review": 18.2042
+      },
+      "average_wait_minutes_by_step": {
+        "account_activation": 104.7208,
+        "compliance_screening": 155.9542,
+        "crm_rekey": 34.425,
+        "customer_notification": 35.9667,
+        "document_validation": 218.3875,
+        "exception_resolution": 288.2583,
+        "intake_receive": 51.3458,
+        "risk_review": 127.8708
+      },
+      "bottleneck_order_by_average_wait": [
+        "exception_resolution",
+        "document_validation",
+        "compliance_screening",
+        "risk_review",
+        "account_activation",
+        "intake_receive",
+        "customer_notification",
+        "crm_rekey"
+      ]
+    },
+    "quality_and_flow": {
+      "average_handoffs": 5.3833,
+      "duplicate_rekey_touch_minutes_per_case": 14.1917,
+      "exception_rate": 0.3833,
+      "first_pass_yield": 0.6167
+    },
+    "time": {
+      "average_cycle_minutes": 1141.6375,
+      "average_touch_minutes": 124.7083,
+      "average_wait_minutes": 1016.9292,
+      "maximum_cycle_minutes": 2464,
+      "median_cycle_minutes": 892.0,
+      "minimum_cycle_minutes": 508,
+      "p90_cycle_minutes": 1885,
+      "sla_attainment_rate": 0.5375,
+      "sla_minutes": 960,
+      "wait_share_of_cycle": 0.8908
+    }
+  },
+  "bottlenecks": [
+    {
+      "average_service_minutes_per_case": 16.1208,
+      "average_wait_minutes_per_case": 288.2583,
+      "evidence_refs": [
+        {
+          "locator": "step_id=exception_resolution",
+          "path": "case/sources/as-is-process.json"
+        },
+        {
+          "locator": "events[*].step_id=exception_resolution",
+          "path": "case/operations/process-instances.jsonl"
+        }
+      ],
+      "issue_tags": [
+        "INCONSISTENT_ROUTE",
+        "LONG_QUEUE",
+        "UNCLEAR_OWNERSHIP"
+      ],
+      "owner_role_id": "VARIABLE",
+      "rework_events": 0,
+      "root_cause_hypothesis": "Exception ownership is variable instead of being assigned to one accountable case owner.",
+      "severity": "CRITICAL",
+      "step_id": "exception_resolution",
+      "step_name": "Resolve onboarding exception",
+      "visits": 92,
+      "wait_to_service_ratio": 17.8811
+    },
+    {
+      "average_service_minutes_per_case": 32.1583,
+      "average_wait_minutes_per_case": 218.3875,
+      "evidence_refs": [
+        {
+          "locator": "step_id=document_validation",
+          "path": "case/sources/as-is-process.json"
+        },
+        {
+          "locator": "events[*].step_id=document_validation",
+          "path": "case/operations/process-instances.jsonl"
+        }
+      ],
+      "issue_tags": [
+        "QUEUE",
+        "REWORK"
+      ],
+      "owner_role_id": "onboarding_analyst",
+      "rework_events": 52,
+      "root_cause_hypothesis": "Completeness defects are discovered after intake, causing late rework and another queue cycle.",
+      "severity": "HIGH",
+      "step_id": "document_validation",
+      "step_name": "Validate identity and company documents",
+      "visits": 240,
+      "wait_to_service_ratio": 6.791
+    },
+    {
+      "average_service_minutes_per_case": 14.0833,
+      "average_wait_minutes_per_case": 155.9542,
+      "evidence_refs": [
+        {
+          "locator": "step_id=compliance_screening",
+          "path": "case/sources/as-is-process.json"
+        },
+        {
+          "locator": "events[*].step_id=compliance_screening",
+          "path": "case/operations/process-instances.jsonl"
+        }
+      ],
+      "issue_tags": [
+        "QUEUE",
+        "SERIAL_CHECK"
+      ],
+      "owner_role_id": "compliance_analyst",
+      "rework_events": 0,
+      "root_cause_hypothesis": "Independent checks are sequenced serially even when their required inputs are already available.",
+      "severity": "HIGH",
+      "step_id": "compliance_screening",
+      "step_name": "Perform sanctions screening",
+      "visits": 240,
+      "wait_to_service_ratio": 11.0737
+    },
+    {
+      "average_service_minutes_per_case": 18.2042,
+      "average_wait_minutes_per_case": 127.8708,
+      "evidence_refs": [
+        {
+          "locator": "step_id=risk_review",
+          "path": "case/sources/as-is-process.json"
+        },
+        {
+          "locator": "events[*].step_id=risk_review",
+          "path": "case/operations/process-instances.jsonl"
+        }
+      ],
+      "issue_tags": [
+        "HIGH_RISK_QUEUE",
+        "SERIAL_CHECK"
+      ],
+      "owner_role_id": "risk_manager",
+      "rework_events": 0,
+      "root_cause_hypothesis": "Independent checks are sequenced serially even when their required inputs are already available.",
+      "severity": "MEDIUM",
+      "step_id": "risk_review",
+      "step_name": "Review risk tier and approvals",
+      "visits": 240,
+      "wait_to_service_ratio": 7.0242
+    },
+    {
+      "average_service_minutes_per_case": 7.5417,
+      "average_wait_minutes_per_case": 104.7208,
+      "evidence_refs": [
+        {
+          "locator": "step_id=account_activation",
+          "path": "case/sources/as-is-process.json"
+        },
+        {
+          "locator": "events[*].step_id=account_activation",
+          "path": "case/operations/process-instances.jsonl"
+        }
+      ],
+      "issue_tags": [
+        "INCOMPLETE_AUDIT_EVIDENCE"
+      ],
+      "owner_role_id": "system",
+      "rework_events": 0,
+      "root_cause_hypothesis": "Activation is not deterministically gated on a complete evidence bundle.",
+      "severity": "CRITICAL",
+      "step_id": "account_activation",
+      "step_name": "Activate approved account",
+      "visits": 240,
+      "wait_to_service_ratio": 13.8856
+    },
+    {
+      "average_service_minutes_per_case": 16.4375,
+      "average_wait_minutes_per_case": 51.3458,
+      "evidence_refs": [
+        {
+          "locator": "step_id=intake_receive",
+          "path": "case/sources/as-is-process.json"
+        },
+        {
+          "locator": "events[*].step_id=intake_receive",
+          "path": "case/operations/process-instances.jsonl"
+        }
+      ],
+      "issue_tags": [
+        "NO_END_TO_END_OWNER"
+      ],
+      "owner_role_id": "intake_specialist",
+      "rework_events": 0,
+      "root_cause_hypothesis": "Responsibility changes between queues without one visible end-to-end case owner.",
+      "severity": "HIGH",
+      "step_id": "intake_receive",
+      "step_name": "Receive onboarding request",
+      "visits": 240,
+      "wait_to_service_ratio": 3.1237
+    },
+    {
+      "average_service_minutes_per_case": 5.9708,
+      "average_wait_minutes_per_case": 35.9667,
+      "evidence_refs": [
+        {
+          "locator": "step_id=customer_notification",
+          "path": "case/sources/as-is-process.json"
+        },
+        {
+          "locator": "events[*].step_id=customer_notification",
+          "path": "case/operations/process-instances.jsonl"
+        }
+      ],
+      "issue_tags": [
+        "MANUAL_NOTIFICATION"
+      ],
+      "owner_role_id": "support_specialist",
+      "rework_events": 0,
+      "root_cause_hypothesis": "A low-value manual handoff remains after activation.",
+      "severity": "MEDIUM",
+      "step_id": "customer_notification",
+      "step_name": "Notify customer of activation",
+      "visits": 240,
+      "wait_to_service_ratio": 6.0238
+    },
+    {
+      "average_service_minutes_per_case": 14.1917,
+      "average_wait_minutes_per_case": 34.425,
+      "evidence_refs": [
+        {
+          "locator": "step_id=crm_rekey",
+          "path": "case/sources/as-is-process.json"
+        },
+        {
+          "locator": "events[*].step_id=crm_rekey",
+          "path": "case/operations/process-instances.jsonl"
+        }
+      ],
+      "issue_tags": [
+        "DUPLICATE_DATA_ENTRY",
+        "HANDOFF"
+      ],
+      "owner_role_id": "onboarding_analyst",
+      "rework_events": 0,
+      "root_cause_hypothesis": "Customer information is captured more than once instead of being reused.",
+      "severity": "HIGH",
+      "step_id": "crm_rekey",
+      "step_name": "Re-key customer data into CRM",
+      "visits": 240,
+      "wait_to_service_ratio": 2.4257
+    }
+  ],
+  "case_version": "atlasbridge-onboarding-as-is-v1.0.0",
+  "decision_boundary": "Analysis may rank evidence-supported problems. It cannot select a future process.",
+  "mandatory_control_traceability": [
+    {
+      "applies_when": "ALL_CASES",
+      "control_id": "C-01",
+      "design_requirement": "An account cannot be activated until identity and company-document validation is complete.",
+      "evidence_ref": {
+        "locator": "control_id=C-01",
+        "path": "case/sources/business-rules.json"
+      },
+      "name": "Identity verification before activation",
+      "status": "MANDATORY_FOR_EVERY_FUTURE_OPTION"
+    },
+    {
+      "applies_when": "ALL_CASES",
+      "control_id": "C-02",
+      "design_requirement": "A sanctions-screening result must exist before account activation.",
+      "evidence_ref": {
+        "locator": "control_id=C-02",
+        "path": "case/sources/business-rules.json"
+      },
+      "name": "Sanctions screening before activation",
+      "status": "MANDATORY_FOR_EVERY_FUTURE_OPTION"
+    },
+    {
+      "applies_when": "RISK_TIER_HIGH",
+      "control_id": "C-03",
+      "design_requirement": "A Risk Manager must approve every high-risk case before activation.",
+      "evidence_ref": {
+        "locator": "control_id=C-03",
+        "path": "case/sources/business-rules.json"
+      },
+      "name": "High-risk manual approval",
+      "status": "MANDATORY_FOR_EVERY_FUTURE_OPTION"
+    },
+    {
+      "applies_when": "ANY_EXCEPTION",
+      "control_id": "C-04",
+      "design_requirement": "A case with an unresolved exception cannot use the normal activation route.",
+      "evidence_ref": {
+        "locator": "control_id=C-04",
+        "path": "case/sources/business-rules.json"
+      },
+      "name": "Controlled exception route",
+      "status": "MANDATORY_FOR_EVERY_FUTURE_OPTION"
+    },
+    {
+      "applies_when": "ALL_CASES",
+      "control_id": "C-05",
+      "design_requirement": "The activation record must retain evidence of all applicable checks and approvals.",
+      "evidence_ref": {
+        "locator": "control_id=C-05",
+        "path": "case/sources/business-rules.json"
+      },
+      "name": "Activation audit evidence",
+      "status": "MANDATORY_FOR_EVERY_FUTURE_OPTION"
+    }
+  ],
+  "method": "transparent deterministic aggregation plus issue-tag interpretation; evaluation answer key is not read",
+  "ownership_findings": [
+    {
+      "finding": "Exception ownership is variable instead of being assigned to one accountable case owner.",
+      "owner_role_id": "VARIABLE",
+      "step_id": "exception_resolution"
+    },
+    {
+      "finding": "Responsibility changes between queues without one visible end-to-end case owner.",
+      "owner_role_id": "intake_specialist",
+      "step_id": "intake_receive"
+    }
+  ],
+  "stakeholder_source": {
+    "path": "case/sources/stakeholder-needs.json",
+    "stakeholder_count": 6
+  },
+  "step_diagnostics": [
+    {
+      "average_service_minutes_per_case": 16.1208,
+      "average_wait_minutes_per_case": 288.2583,
+      "evidence_refs": [
+        {
+          "locator": "step_id=exception_resolution",
+          "path": "case/sources/as-is-process.json"
+        },
+        {
+          "locator": "events[*].step_id=exception_resolution",
+          "path": "case/operations/process-instances.jsonl"
+        }
+      ],
+      "issue_tags": [
+        "INCONSISTENT_ROUTE",
+        "LONG_QUEUE",
+        "UNCLEAR_OWNERSHIP"
+      ],
+      "owner_role_id": "VARIABLE",
+      "rework_events": 0,
+      "root_cause_hypothesis": "Exception ownership is variable instead of being assigned to one accountable case owner.",
+      "severity": "CRITICAL",
+      "step_id": "exception_resolution",
+      "step_name": "Resolve onboarding exception",
+      "visits": 92,
+      "wait_to_service_ratio": 17.8811
+    },
+    {
+      "average_service_minutes_per_case": 32.1583,
+      "average_wait_minutes_per_case": 218.3875,
+      "evidence_refs": [
+        {
+          "locator": "step_id=document_validation",
+          "path": "case/sources/as-is-process.json"
+        },
+        {
+          "locator": "events[*].step_id=document_validation",
+          "path": "case/operations/process-instances.jsonl"
+        }
+      ],
+      "issue_tags": [
+        "QUEUE",
+        "REWORK"
+      ],
+      "owner_role_id": "onboarding_analyst",
+      "rework_events": 52,
+      "root_cause_hypothesis": "Completeness defects are discovered after intake, causing late rework and another queue cycle.",
+      "severity": "HIGH",
+      "step_id": "document_validation",
+      "step_name": "Validate identity and company documents",
+      "visits": 240,
+      "wait_to_service_ratio": 6.791
+    },
+    {
+      "average_service_minutes_per_case": 14.0833,
+      "average_wait_minutes_per_case": 155.9542,
+      "evidence_refs": [
+        {
+          "locator": "step_id=compliance_screening",
+          "path": "case/sources/as-is-process.json"
+        },
+        {
+          "locator": "events[*].step_id=compliance_screening",
+          "path": "case/operations/process-instances.jsonl"
+        }
+      ],
+      "issue_tags": [
+        "QUEUE",
+        "SERIAL_CHECK"
+      ],
+      "owner_role_id": "compliance_analyst",
+      "rework_events": 0,
+      "root_cause_hypothesis": "Independent checks are sequenced serially even when their required inputs are already available.",
+      "severity": "HIGH",
+      "step_id": "compliance_screening",
+      "step_name": "Perform sanctions screening",
+      "visits": 240,
+      "wait_to_service_ratio": 11.0737
+    },
+    {
+      "average_service_minutes_per_case": 18.2042,
+      "average_wait_minutes_per_case": 127.8708,
+      "evidence_refs": [
+        {
+          "locator": "step_id=risk_review",
+          "path": "case/sources/as-is-process.json"
+        },
+        {
+          "locator": "events[*].step_id=risk_review",
+          "path": "case/operations/process-instances.jsonl"
+        }
+      ],
+      "issue_tags": [
+        "HIGH_RISK_QUEUE",
+        "SERIAL_CHECK"
+      ],
+      "owner_role_id": "risk_manager",
+      "rework_events": 0,
+      "root_cause_hypothesis": "Independent checks are sequenced serially even when their required inputs are already available.",
+      "severity": "MEDIUM",
+      "step_id": "risk_review",
+      "step_name": "Review risk tier and approvals",
+      "visits": 240,
+      "wait_to_service_ratio": 7.0242
+    },
+    {
+      "average_service_minutes_per_case": 7.5417,
+      "average_wait_minutes_per_case": 104.7208,
+      "evidence_refs": [
+        {
+          "locator": "step_id=account_activation",
+          "path": "case/sources/as-is-process.json"
+        },
+        {
+          "locator": "events[*].step_id=account_activation",
+          "path": "case/operations/process-instances.jsonl"
+        }
+      ],
+      "issue_tags": [
+        "INCOMPLETE_AUDIT_EVIDENCE"
+      ],
+      "owner_role_id": "system",
+      "rework_events": 0,
+      "root_cause_hypothesis": "Activation is not deterministically gated on a complete evidence bundle.",
+      "severity": "CRITICAL",
+      "step_id": "account_activation",
+      "step_name": "Activate approved account",
+      "visits": 240,
+      "wait_to_service_ratio": 13.8856
+    },
+    {
+      "average_service_minutes_per_case": 16.4375,
+      "average_wait_minutes_per_case": 51.3458,
+      "evidence_refs": [
+        {
+          "locator": "step_id=intake_receive",
+          "path": "case/sources/as-is-process.json"
+        },
+        {
+          "locator": "events[*].step_id=intake_receive",
+          "path": "case/operations/process-instances.jsonl"
+        }
+      ],
+      "issue_tags": [
+        "NO_END_TO_END_OWNER"
+      ],
+      "owner_role_id": "intake_specialist",
+      "rework_events": 0,
+      "root_cause_hypothesis": "Responsibility changes between queues without one visible end-to-end case owner.",
+      "severity": "HIGH",
+      "step_id": "intake_receive",
+      "step_name": "Receive onboarding request",
+      "visits": 240,
+      "wait_to_service_ratio": 3.1237
+    },
+    {
+      "average_service_minutes_per_case": 5.9708,
+      "average_wait_minutes_per_case": 35.9667,
+      "evidence_refs": [
+        {
+          "locator": "step_id=customer_notification",
+          "path": "case/sources/as-is-process.json"
+        },
+        {
+          "locator": "events[*].step_id=customer_notification",
+          "path": "case/operations/process-instances.jsonl"
+        }
+      ],
+      "issue_tags": [
+        "MANUAL_NOTIFICATION"
+      ],
+      "owner_role_id": "support_specialist",
+      "rework_events": 0,
+      "root_cause_hypothesis": "A low-value manual handoff remains after activation.",
+      "severity": "MEDIUM",
+      "step_id": "customer_notification",
+      "step_name": "Notify customer of activation",
+      "visits": 240,
+      "wait_to_service_ratio": 6.0238
+    },
+    {
+      "average_service_minutes_per_case": 14.1917,
+      "average_wait_minutes_per_case": 34.425,
+      "evidence_refs": [
+        {
+          "locator": "step_id=crm_rekey",
+          "path": "case/sources/as-is-process.json"
+        },
+        {
+          "locator": "events[*].step_id=crm_rekey",
+          "path": "case/operations/process-instances.jsonl"
+        }
+      ],
+      "issue_tags": [
+        "DUPLICATE_DATA_ENTRY",
+        "HANDOFF"
+      ],
+      "owner_role_id": "onboarding_analyst",
+      "rework_events": 0,
+      "root_cause_hypothesis": "Customer information is captured more than once instead of being reused.",
+      "severity": "HIGH",
+      "step_id": "crm_rekey",
+      "step_name": "Re-key customer data into CRM",
+      "visits": 240,
+      "wait_to_service_ratio": 2.4257
+    }
+  ]
+}
