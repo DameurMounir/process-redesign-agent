@@ -19,10 +19,10 @@ env:
   UV_NO_PROGRESS: "1"
 
 jobs:
-  milestone-01:
+  quality:
     name: Python ${{ matrix.python-version }}
     runs-on: ubuntu-latest
-    timeout-minutes: 10
+    timeout-minutes: 12
     strategy:
       fail-fast: false
       matrix:
@@ -41,22 +41,11 @@ jobs:
           python-version: ${{ matrix.python-version }}
           enable-cache: false
 
-      - name: Verify the frozen environment contract
+      - name: Verify frozen environment contract
         run: uv lock --check
 
-      - name: Compile typed source and scripts
-        run: uv run --no-sync python -m compileall -q src scripts tests
+      - name: Run complete deterministic release gate
+        run: uv run --no-sync python scripts/release_gate.py
 
-      - name: Verify the frozen case and generated artifacts
-        run: |
-          uv run --no-sync python scripts/verify_case.py
-          uv run --no-sync python scripts/generate_case.py --check
-
-      - name: Run deterministic tests
-        run: uv run --no-sync python -m unittest discover -s tests -v
-
-      - name: Enforce public boundary
-        run: uv run --no-sync python scripts/scan_public_boundary.py
-
-      - name: Reject generated drift
-        run: git diff --exit-code -- case diagrams/rendered
+      - name: Reject tracked generated drift
+        run: git diff --exit-code -- case analysis design/expected evaluation/results diagrams/rendered docs/assets
