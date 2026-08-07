@@ -1,0 +1,10 @@
+flowchart LR
+  E[Frozen synthetic evidence] --> A[Deterministic aggregation]
+  A --> B[Step diagnostics]
+  A --> O[Ownership analysis]
+  A --> C[Control traceability]
+  B --> H[Evidence-linked bottleneck hypotheses]
+  O --> H
+  C --> H
+  H --> X[Milestone 03 redesign contract]
+  K[Evaluation-only answer key] -. blocked .-> A
