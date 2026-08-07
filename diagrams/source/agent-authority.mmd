@@ -1,0 +1,8 @@
+flowchart LR
+  E[Evidence] --> A[AS-IS analyzer]
+  A --> S[Scenario engine]
+  S --> R[Trade-off ranking]
+  R --> X[Advisor explanation]
+  X --> H{Human selection}
+  H -->|select/reject| D[Decision ledger]
+  X -. cannot select .-> D

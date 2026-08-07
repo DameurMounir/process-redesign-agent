@@ -1,0 +1,114 @@
+{
+  "authority": "Top scoring candidate is decision support only. A human must select or reject a future process in a later review step.",
+  "baseline_case_version": "atlasbridge-onboarding-as-is-v1.0.0",
+  "comparison_version": "3.0.0",
+  "projections": [
+    {
+      "assumption_notice": "Projection is a deterministic scenario transformation of the frozen synthetic baseline, not a production forecast or realized benefit claim.",
+      "hard_controls_pass": true,
+      "implementation": {
+        "change_risk": 0.2,
+        "synthetic_budget_usd": 70000.0,
+        "weeks": 6
+      },
+      "name": "Controlled incremental",
+      "option_id": "OPT-A",
+      "projected": {
+        "activation_audit_evidence_rate": 1.0,
+        "average_cycle_minutes": 912.0105,
+        "average_labor_cost_usd": 72.0267,
+        "average_touch_minutes": 104.3154,
+        "average_wait_minutes": 807.6951,
+        "exception_rate": 0.2833,
+        "first_pass_yield": 0.7167,
+        "p90_cycle_minutes": 1581.1471,
+        "sla_attainment_rate": 0.6423
+      },
+      "soft_12_week_180k_constraint_pass": true,
+      "summary": "Capture once, add early completeness checks, assign exception ownership, and automate low-value notifications without changing the core control sequence.",
+      "target_status": {
+        "activation_audit_evidence_rate": true,
+        "first_pass_yield_minimum": false,
+        "p90_cycle_minutes_maximum": false,
+        "sla_attainment_rate_minimum": false
+      },
+      "tradeoff_score": 0.535487
+    },
+    {
+      "assumption_notice": "Projection is a deterministic scenario transformation of the frozen synthetic baseline, not a production forecast or realized benefit claim.",
+      "hard_controls_pass": true,
+      "implementation": {
+        "change_risk": 0.45,
+        "synthetic_budget_usd": 145000.0,
+        "weeks": 10
+      },
+      "name": "Balanced parallel-control redesign",
+      "option_id": "OPT-B",
+      "projected": {
+        "activation_audit_evidence_rate": 1.0,
+        "average_cycle_minutes": 499.9337,
+        "average_labor_cost_usd": 62.0297,
+        "average_touch_minutes": 89.8368,
+        "average_wait_minutes": 410.0968,
+        "exception_rate": 0.2233,
+        "first_pass_yield": 0.8567,
+        "p90_cycle_minutes": 784.1861,
+        "sla_attainment_rate": 0.9171
+      },
+      "soft_12_week_180k_constraint_pass": true,
+      "summary": "Use one intake record, one accountable case owner, parallel independent checks, a dedicated exception lane, evidence-bound activation, and automated status notifications.",
+      "target_status": {
+        "activation_audit_evidence_rate": true,
+        "first_pass_yield_minimum": true,
+        "p90_cycle_minutes_maximum": true,
+        "sla_attainment_rate_minimum": true
+      },
+      "tradeoff_score": 0.619555
+    },
+    {
+      "assumption_notice": "Projection is a deterministic scenario transformation of the frozen synthetic baseline, not a production forecast or realized benefit claim.",
+      "hard_controls_pass": true,
+      "implementation": {
+        "change_risk": 0.8,
+        "synthetic_budget_usd": 260000.0,
+        "weeks": 16
+      },
+      "name": "Automation-first redesign",
+      "option_id": "OPT-C",
+      "projected": {
+        "activation_audit_evidence_rate": 1.0,
+        "average_cycle_minutes": 307.9604,
+        "average_labor_cost_usd": 44.3788,
+        "average_touch_minutes": 64.2733,
+        "average_wait_minutes": 243.687,
+        "exception_rate": 0.1833,
+        "first_pass_yield": 0.8967,
+        "p90_cycle_minutes": 457.6363,
+        "sla_attainment_rate": 0.99
+      },
+      "soft_12_week_180k_constraint_pass": false,
+      "summary": "Automate most standard-risk routing and checks while retaining mandatory human approval for high-risk activation and controlled exception handling.",
+      "target_status": {
+        "activation_audit_evidence_rate": true,
+        "first_pass_yield_minimum": true,
+        "p90_cycle_minutes_maximum": true,
+        "sla_attainment_rate_minimum": true
+      },
+      "tradeoff_score": 0.496424
+    }
+  ],
+  "ranking": [
+    "OPT-B",
+    "OPT-A",
+    "OPT-C"
+  ],
+  "top_scoring_candidate": "OPT-B",
+  "weights": {
+    "change_risk": 0.2,
+    "cycle_time_improvement": 0.25,
+    "first_pass_yield": 0.15,
+    "implementation_effort": 0.15,
+    "labor_cost_improvement": 0.1,
+    "sla_attainment": 0.15
+  }
+}
