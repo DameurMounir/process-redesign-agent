@@ -1,0 +1,93 @@
+{
+  "design_version": "3.0.0",
+  "options": [
+    {
+      "option_id": "OPT-A",
+      "name": "Controlled incremental",
+      "summary": "Capture once, add early completeness checks, assign exception ownership, and automate low-value notifications without changing the core control sequence.",
+      "service_reduction_by_step": {
+        "crm_rekey": 1.0,
+        "document_validation": 0.1,
+        "customer_notification": 0.5
+      },
+      "wait_reduction_by_step": {
+        "intake_receive": 0.1,
+        "crm_rekey": 0.7,
+        "document_validation": 0.25,
+        "exception_resolution": 0.3,
+        "account_activation": 0.2,
+        "customer_notification": 0.5
+      },
+      "first_pass_yield_gain": 0.10,
+      "exception_rate_reduction": 0.10,
+      "tail_multiplier": 1.05,
+      "implementation_weeks": 6,
+      "implementation_cost_usd": 70000,
+      "change_risk": 0.20,
+      "control_coverage": ["C-01", "C-02", "C-03", "C-04", "C-05"]
+    },
+    {
+      "option_id": "OPT-B",
+      "name": "Balanced parallel-control redesign",
+      "summary": "Use one intake record, one accountable case owner, parallel independent checks, a dedicated exception lane, evidence-bound activation, and automated status notifications.",
+      "service_reduction_by_step": {
+        "crm_rekey": 1.0,
+        "document_validation": 0.2,
+        "compliance_screening": 0.15,
+        "risk_review": 0.1,
+        "exception_resolution": 0.25,
+        "account_activation": 0.2,
+        "customer_notification": 0.8
+      },
+      "wait_reduction_by_step": {
+        "intake_receive": 0.25,
+        "crm_rekey": 0.9,
+        "document_validation": 0.55,
+        "compliance_screening": 0.7,
+        "risk_review": 0.5,
+        "exception_resolution": 0.6,
+        "account_activation": 0.65,
+        "customer_notification": 0.8
+      },
+      "first_pass_yield_gain": 0.24,
+      "exception_rate_reduction": 0.16,
+      "tail_multiplier": 0.95,
+      "implementation_weeks": 10,
+      "implementation_cost_usd": 145000,
+      "change_risk": 0.45,
+      "control_coverage": ["C-01", "C-02", "C-03", "C-04", "C-05"]
+    },
+    {
+      "option_id": "OPT-C",
+      "name": "Automation-first redesign",
+      "summary": "Automate most standard-risk routing and checks while retaining mandatory human approval for high-risk activation and controlled exception handling.",
+      "service_reduction_by_step": {
+        "intake_receive": 0.15,
+        "crm_rekey": 1.0,
+        "document_validation": 0.45,
+        "compliance_screening": 0.55,
+        "risk_review": 0.35,
+        "exception_resolution": 0.45,
+        "account_activation": 0.3,
+        "customer_notification": 0.95
+      },
+      "wait_reduction_by_step": {
+        "intake_receive": 0.4,
+        "crm_rekey": 0.95,
+        "document_validation": 0.75,
+        "compliance_screening": 0.85,
+        "risk_review": 0.7,
+        "exception_resolution": 0.75,
+        "account_activation": 0.8,
+        "customer_notification": 0.95
+      },
+      "first_pass_yield_gain": 0.28,
+      "exception_rate_reduction": 0.20,
+      "tail_multiplier": 0.90,
+      "implementation_weeks": 16,
+      "implementation_cost_usd": 260000,
+      "change_risk": 0.80,
+      "control_coverage": ["C-01", "C-02", "C-03", "C-04", "C-05"]
+    }
+  ]
+}
